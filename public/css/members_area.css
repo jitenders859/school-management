@@ -1,0 +1,304 @@
+
+	@import url("tilting_nav.css");
+
+	body {
+		background-color: black;
+		background-image: url('../images/retrobg3.jpg');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		background-attachment: fixed;
+        color: #111;
+	}
+
+	.top-row {
+		text-shadow: 2px 2px #141500;
+	}
+
+	.top-row > div:nth-child(1) {
+		color: #eee;
+		font-family: 'Kanit', sans-serif;
+		text-transform: uppercase;
+		line-height: 1.3em;
+	}
+
+	.top-row > div:nth-child(1) div:nth-child(1) {
+		color: gold;
+		margin-top: 1em;
+		font-size: 1.1em;
+	}
+
+	.top-row > div:nth-child(1) div:nth-child(2) {
+		font-size: 1.4em;
+	}
+
+	.top-row > div:nth-child(2) a, .footer a {
+		color: #ddd;
+		font-weight: bold;
+		font-size: 1.2em;
+		margin: 1.6em 0.7em;
+	}
+
+	.top-row > div:nth-child(2) a:hover, .footer a:hover {
+		color: gold;
+	}
+
+	.fa-bars {
+		color: #fff;
+		font-size: 2rem;
+	}
+
+	#homepage-top {
+		background-image: url('../images/retrobg.jpg');
+	}
+
+	#homepage-top, .dark-wallpaper {
+		padding: 2em 0;
+		color: #fff;
+	}
+
+	.dark-wallpaper {
+		background-image: url('../images/bg1.png');
+	}
+
+	.dark-wallpaper h1 {
+		text-align: center;
+	}
+
+	.white-strip {
+		padding: 2em 0;
+		color: #333;
+		background-color: #fff;
+	}
+
+	.white-strip h2, .sandpaper h2 {
+		text-align: center;
+	}
+
+	.sandpaper {
+		padding: 2em 0;
+		color: #333;
+		background-image: url('../images/bedge_grunge.png');
+	}
+
+	.sandpaper img {
+		border: 3px #fff solid;
+		box-shadow: 0px 3px 10px 10px #ccc;
+	}
+
+	.footer {
+		padding: 2em 0;
+		text-align: center;
+		color: #eee;
+	}
+
+
+	#home-video {
+		min-height: 340px;
+	}
+
+	.go-center {
+		text-align: center;
+	}
+
+	.button-big {
+	    background-color: #4dca5d;
+	    border-color: #4dca5d;
+	    color: #fff;
+	    transition: 1s;
+	    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+	    font-size: 1.4rem;
+	    height: 4.5rem;
+	    line-height: 4.5rem;
+	    padding: 0 2rem;
+	}
+
+	.handwriting {
+		font-family: 'Parisienne', cursive;
+		font-size: 2.4em;
+	}
+
+	.topics {
+		margin-top: 1em;
+	}
+
+	.topics div {
+		text-align: center;
+	}
+
+	.topics h5 {
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+
+	.highlight {
+		background-color: yellow;
+		font-family: 'Kanit', sans-serif;
+		font-size: 2em;
+		line-height: 2.1em;
+	}
+
+	.smaller {
+		font-size: 0.8em;
+	}
+
+	
+
+    .stage > .row:nth-child(1) {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.stage > .row:nth-child(1) div {
+		margin: 1em 2em;
+	}
+
+	.stage > .row:nth-child(1) > div:nth-child(2) {
+		text-align: center;
+		font-family: 'Kanit', sans-serif;
+		text-transform: uppercase;
+		font-size: 1.4em;
+		line-height: 1em;
+		color: #333;
+	}
+
+	.stage > .row:nth-child(1) > div:nth-child(2) div:nth-child(2) {
+		font-size: 2.2em;
+	}
+
+	.stage > .row:nth-child(2),
+	.stage > .row:nth-child(3),
+	.stage > .row:nth-child(4),
+	.stage > .row:nth-child(5),
+	.stage > .row:nth-child(6) {
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.silver-frame {
+	    margin-top: 1em;
+	    background: rgba(212,228,239,1);
+	    background: -moz-linear-gradient(top, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(212,228,239,1)), color-stop(100%, rgba(134,174,204,1)));
+	    background: -webkit-linear-gradient(top, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	    background: -o-linear-gradient(top, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	    background: -ms-linear-gradient(top, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	    background: linear-gradient(to bottom, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4e4ef', endColorstr='#86aecc', GradientType=0 );
+	}
+
+	.stage {
+	    font-size: 0.7em;
+	    min-height: 90vh;
+	    background: #fff;
+	    margin: 1em 0.2em !important;
+	    padding: 0em !important;
+	    -webkit-box-shadow: -8px 10px 38px 1px rgba(0,0,0,0.55);
+	    -moz-box-shadow: -8px 10px 38px 1px rgba(0,0,0,0.55);
+	    box-shadow: -8px 10px 38px 1px rgba(0,0,0,0.55);
+	}
+
+	pre > code {
+		font-size: 1.2em;
+		color: #333;
+	}
+
+    section {
+        padding: 12px;
+        
+    }
+    section h1 {
+        text-align: center;
+        margin-top: 12px;
+    }
+
+    p {
+        font-size: 1.4rem;
+    }
+    section h3 {
+        font-family: 'Kanit', sans-serif;
+        text-transform: uppercase;
+        font-size: 3rem;
+        letter-spacing: 0;
+    }
+
+    .section-b {
+        border-top: 1px #bbb solid;
+        background-color: #eee;
+    }
+
+    .section-c {
+        border-top: 1px #bbb solid;
+        border-bottom: 1px #bbb solid;
+        background-color: #decfe8;
+    }
+
+    .training-grid > div, .projects-grid > div {
+        border: 1px #bbb solid;
+        /* height: 160px; */
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .training-grid h4, .projects-grid h4 {
+        font-family: 'Kanit', sans-serif;
+        letter-spacing: 0;
+        margin-top: 7px;
+    }
+
+    .training-grid h5, .projects-grid h5 {
+        font-family: 'Kanit', sans-serif;
+        letter-spacing: 0;
+        margin-top: 12px;
+        color: #777;
+        font-size: 2.4rem;
+    }
+
+    .training-grid img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .section-intro {
+        margin: 12px auto 76px auto;
+        max-width: 760px;
+    }
+    
+    .lessons-list {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    
+    
+    .lesson-list > div {
+        border-bottom: 1px #bbb solid;
+        padding: 12px;
+    }
+    
+    
+    .lesson-list> div:hover {
+        background-color: #bbb;
+    }
+    
+    .lessons-list h4, .lesson-count {
+        font-family: 'Kanit', sans-serif;
+        text-transform: uppercase;
+    }
+    
+    .lesson-count {
+        font-size: 2em;
+    }
+    
+    .lessons-list h4 {
+        font-size: 3rem;
+    }
+    
+    .lessons-list .fa-film {
+        font-size: 1.4rem;
+        top: 1px;
+        position: relative;
+    }

@@ -1,0 +1,9 @@
+{
+  "IPN Listener": {
+    "url_segments": "paypal/ipn_listener",
+    "request_type": "POST",
+    "description": "The IPN Listener",
+    "enableParams": true,
+    "authorization": "*"
+  }
+}

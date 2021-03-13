@@ -1,0 +1,35 @@
+#open-btn {
+    font-size: 3rem;
+    right: 18px;
+    position: absolute;
+    top: 27px;
+}
+
+#side-nav {
+    width: 0;
+    opacity: 0;
+    background-color: #9b4dca;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    transition: 0.3s;
+    z-index: -1;
+}
+
+#side-nav a {
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 22px;
+    font-size: 2rem;
+}
+
+#close-btn {
+    color: #fff;
+    font-size: 5rem;
+    margin-left: 22px;
+}
+
+#open-btn, #close-btn {
+    cursor: pointer;
+}

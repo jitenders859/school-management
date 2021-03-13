@@ -1,0 +1,271 @@
+@import url("side_nav.css");
+
+body {
+	background-color: black;
+}
+
+.top-row {
+	padding-bottom: 21px;
+}
+
+.top-row > div:nth-child(1) {
+	color: #eee;
+	font-family: 'Kanit', sans-serif;
+	text-transform: uppercase;
+	line-height: 1.3em;
+}
+
+.top-row > div:nth-child(1) div:nth-child(1) {
+	color: gold;
+	margin-top: 1em;
+	font-size: 1.1em;
+}
+
+.top-row > div:nth-child(1) div:nth-child(2) {
+	font-size: 1.4em;
+}
+
+.top-row > div:nth-child(2) {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-top: 17px;
+}
+
+.top-row > div:nth-child(2) a, .footer a {
+	color: #ddd;
+	font-size: 1.2em;
+	margin: 1.6em 1em;
+}
+
+.top-row > div:nth-child(2) a:hover, .footer a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
+.top-row > div:nth-child(3) {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+	margin-top: 17px;
+}
+
+#homepage-top {
+	background-image: url('../images/retrobg.jpg');
+}
+
+#homepage-top, .dark-wallpaper {
+	padding: 2em 0;
+	color: #fff;
+}
+
+.dark-wallpaper {
+	background-image: url('../images/bg1.png');
+}
+
+.dark-wallpaper h1 {
+	text-align: center;
+}
+
+.white-strip {
+	padding: 2em 0;
+	color: #333;
+	background-color: #fff;
+}
+
+.white-strip h2, .sandpaper h2 {
+	text-align: center;
+}
+
+.sandpaper {
+	padding: 2em 0;
+	color: #333;
+	background-image: url('../images/bedge_grunge.png');
+}
+
+.sandpaper img {
+	border: 3px #fff solid;
+	box-shadow: 0px 3px 10px 10px #ccc;
+}
+
+.footer {
+	padding: 2em 0;
+	text-align: center;
+	color: #eee;
+}
+
+
+#home-video {
+	min-height: 340px;
+}
+
+.go-center {
+	text-align: center;
+}
+
+.button-big {
+    background-color: #4dca5d;
+    border-color: #4dca5d;
+    color: #fff;
+    transition: 1s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+    font-size: 1.4rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    padding: 0 2rem;
+}
+
+.handwriting {
+	font-family: 'Homemade Apple', cursive;
+	font-size: 2em;
+}
+
+.topics {
+	margin-top: 1em;
+}
+
+.topics div {
+	text-align: center;
+}
+
+.topics h5 {
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.highlight {
+	background-color: yellow;
+	font-family: 'Kanit', sans-serif;
+	font-size: 2em;
+	line-height: 2.1em;
+}
+
+.smaller {
+	font-size: 0.8em;
+}
+
+.neon {
+    background-image: url("../images/neon.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 80vh;  
+}
+
+.paper {
+    background-image: url("../images/ricepaper2.png");
+    color: #000;
+}
+
+.join-grid {
+    max-width: 900px;
+    min-height: 80vh;
+    margin: 0 auto;
+}
+
+.join-grid h1 {
+	text-align: center;
+	width: 100%;
+	margin-top: 33px;
+}
+
+.join-grid h3 {
+    margin-top: 33px;
+    margin-bottom: 0;
+}
+
+.join-grid > .row {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.join-grid > .row > div {
+    padding: 11px 0;
+}
+
+.join-grid > .row > div:nth-child(2) {
+    text-align: right;
+}
+
+.join-grid .large {
+    font-size: 3rem;
+    font-weight: normal;
+    padding-top: 33px;
+}
+
+button.button-outline {
+	background-color: #eee;
+}
+
+button.button-outline:hover {
+	background-color: #fff;
+}
+
+.button-success {
+    color: #FFF;
+    background-color: #24ad46;
+    border-color: #24ad46;
+}
+
+.button-success:hover {
+    background-color: #208c3b;
+    border-color: #208c3b;
+}
+
+#cryptocoins {
+    max-width: 820px;
+    margin: 45px auto 0 auto;
+}
+
+#cryptocoins > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+#paypal-info {
+    margin-top: 45px;
+}
+
+.grand-total {
+    font-size: 2em;
+    color: green;
+}
+
+.special {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: normal;      
+}
+
+.special-big {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#bluep {
+    width: 100%;
+}
+
+#bluep > div {
+    padding: 12px 0;
+    border-bottom: 1px silver solid;
+}
+
+.stage {
+	min-height: 90vh;
+}
+
+.stage h1 {
+	padding-top: 33px;
+}

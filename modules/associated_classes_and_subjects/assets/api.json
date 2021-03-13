@@ -1,0 +1,62 @@
+{
+   "Fetch":{  
+      "url_segments":"associated_classes_and_subjects/fetch/{update_id}/{calling_module_name}",
+      "request_type":"GET",
+      "description":"Fetch associated records",
+      "enableParams": false,
+      "required_fields": [
+        {
+           "name": "update_id",
+           "label": "update_id" 
+        },
+        {
+           "name": "calling_module_name",
+           "label": "Calling Module Name" 
+        }
+      ],
+      "authorization":{  
+         "roles": [
+            "admin"
+         ]
+      }
+   },
+   "Options":{  
+      "url_segments":"associated_classes_and_subjects/get_dropdown_options",
+      "request_type":"POST",
+      "description":"Fetch dropdown options",
+      "enableParams": true,
+      "authorization":{  
+         "roles": [
+            "admin"
+         ]
+      }
+   },
+   "Create":{  
+      "url_segments":"api/create/associated_classes_and_subjects",
+      "request_type":"POST",
+      "description":"Insert database record",
+      "enableParams": true,
+      "beforeHook":"_prep_inbound",
+      "authorization":{  
+         "roles": [
+            "admin"
+         ]
+      }
+   },
+   "Delete One": {
+      "url_segments": "api/delete/associated_classes_and_subjects/{id}",
+      "request_type": "DELETE",
+      "description": "Delete one row",
+      "required_fields": [
+         {
+            "name": "id",
+            "label": "ID"
+         }
+      ],
+      "authorization":{  
+         "roles": [
+            "admin"
+         ]
+      }
+   }
+}
