@@ -9,6 +9,12 @@ class Templates extends Trongate {
         load('public_milligram', $data);
     }
 
+
+    function principal_admin_panel($data) {
+        load('principal', $data);
+    }
+
+
     function teacher_admin_panel($data) {
         load('teacher', $data);
     }

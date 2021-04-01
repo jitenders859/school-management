@@ -254,6 +254,120 @@ class Video_lessons extends Trongate {
         return $options;
     }
 
+    function _get_schools_options($selected_key) {
+
+        if ($selected_key == '') {
+            $options[''] = 'Select...';
+        }
+
+        $sql = '
+                SELECT
+                    video_lessons.id as assigned_to_description,
+                    schools.id,
+                    schools.school_name as identifier_column
+                FROM
+                    schools                
+                LEFT JOIN video_lessons ON schools.id = video_lessons.schools_id 
+                ORDER BY schools.school_name
+        ';
+
+        $rows = $this->model->query($sql, 'object');
+
+        foreach ($rows as $row) {
+            $option_id = $row->id;
+            $option_value = trim($row->identifier_column);
+            $assigned_to_description = trim($row->assigned_to_description);
+
+            if ((trim($assigned_to_description) !== '') && ($option_id !== $selected_key)) {
+                $option_value.= ' (currently assigned to '.$assigned_to_description.')';
+            }
+
+            $options[$option_id] = $option_value;
+        }
+
+        if ($selected_key>0) {
+            $options[0] = strtoupper('*** Disassociate from '.$options[$selected_key].' ***');
+        }
+
+        return $options;
+    }
+
+    function _get_classes_options($selected_key) {
+
+        if ($selected_key == '') {
+            $options[''] = 'Select...';
+        }
+
+        $sql = '
+                SELECT
+                    video_lessons.title as assigned_to_description,
+                    classes.id,
+                    classes.class_title as identifier_column
+                FROM
+                    classes                
+                LEFT JOIN video_lessons ON classes.id = video_lessons.classes_id 
+                ORDER BY classes.class_title
+        ';
+
+        $rows = $this->model->query($sql, 'object');
+
+        foreach ($rows as $row) {
+            $option_id = $row->id;
+            $option_value = trim($row->identifier_column);
+            $assigned_to_description = trim($row->assigned_to_description);
+
+            if ((trim($assigned_to_description) !== '') && ($option_id !== $selected_key)) {
+                $option_value.= ' (currently assigned to '.$assigned_to_description.')';
+            }
+
+            $options[$option_id] = $option_value;
+        }
+
+        if ($selected_key>0) {
+            $options[0] = strtoupper('*** Disassociate from '.$options[$selected_key].' ***');
+        }
+
+        return $options;
+    }
+
+    function _get_subjects_options($selected_key) {
+
+        if ($selected_key == '') {
+            $options[''] = 'Select...';
+        }
+
+        $sql = '
+                SELECT
+                    video_lessons.title as assigned_to_description,
+                    subjects.id,
+                    subjects.subject_name as identifier_column
+                FROM
+                    subjects                
+                LEFT JOIN video_lessons ON subjects.id = video_lessons.subjects_id 
+                ORDER BY subjects.subject_name
+        ';
+
+        $rows = $this->model->query($sql, 'object');
+
+        foreach ($rows as $row) {
+            $option_id = $row->id;
+            $option_value = trim($row->identifier_column);
+            $assigned_to_description = trim($row->assigned_to_description);
+
+            if ((trim($assigned_to_description) !== '') && ($option_id !== $selected_key)) {
+                $option_value.= ' (currently assigned to '.$assigned_to_description.')';
+            }
+
+            $options[$option_id] = $option_value;
+        }
+
+        if ($selected_key>0) {
+            $options[0] = strtoupper('*** Disassociate from '.$options[$selected_key].' ***');
+        }
+
+        return $options;
+    }
+
     function create() {
         $this->module('security');
         $this->security->_make_sure_allowed();
@@ -277,6 +391,21 @@ class Video_lessons extends Trongate {
         }
 
         $data['sections_options'] = $this->_get_sections_options($data['sections_id']);
+        if ($data['schools_id'] == 0) {
+            $data['schools_id'] = '';
+        }
+
+        $data['schools_options'] = $this->_get_schools_options($data['schools_id']);
+        if ($data['classes_id'] == 0) {
+            $data['classes_id'] = '';
+        }
+
+        $data['classes_options'] = $this->_get_classes_options($data['classes_id']);
+        if ($data['subjects_id'] == 0) {
+            $data['subjects_id'] = '';
+        }
+
+        $data['subjects_options'] = $this->_get_subjects_options($data['subjects_id']);
         $data['headline'] = $this->_get_page_headline($update_id);
 
         if ($update_id > 0) {
@@ -347,6 +476,27 @@ class Video_lessons extends Trongate {
                     $flash_msg = 'The record was successfully created';
                 }
 
+                        $sync_subjects_data['update_id'] = $update_id;
+                        $sync_subjects_data['subjects_id'] = $data['subjects_id'];
+                        $this->_sync_with_subjects($sync_subjects_data);
+
+                
+
+
+                        $sync_classes_data['update_id'] = $update_id;
+                        $sync_classes_data['classes_id'] = $data['classes_id'];
+                        $this->_sync_with_classes($sync_classes_data);
+
+                
+
+
+                        $sync_schools_data['update_id'] = $update_id;
+                        $sync_schools_data['schools_id'] = $data['schools_id'];
+                        $this->_sync_with_schools($sync_schools_data);
+
+                
+
+
                 set_flashdata($flash_msg);
                 redirect('video_lessons/show/'.$update_id);
 
@@ -381,6 +531,24 @@ class Video_lessons extends Trongate {
                 //delete the record
                 $this->model->delete($update_id, $this->module);
 
+                                //remove any existing association with subjects module
+                                $sql = 'update subjects set video_lessons_id = 0 where video_lessons_id = '.$update_id;
+                                $this->model->query($sql);
+
+                            
+
+                                //remove any existing association with classes module
+                                $sql = 'update classes set video_lessons_id = 0 where video_lessons_id = '.$update_id;
+                                $this->model->query($sql);
+
+                            
+
+                                //remove any existing association with schools module
+                                $sql = 'update schools set video_lessons_id = 0 where video_lessons_id = '.$update_id;
+                                $this->model->query($sql);
+
+                            
+
                 //set the flashdata
                 $flash_msg = 'The record was successfully deleted';
                 set_flashdata($flash_msg);
@@ -408,7 +576,10 @@ class Video_lessons extends Trongate {
             $data['code'] = $video_lessons->code;
             $data['published'] = $video_lessons->published;
             $data['sections_id'] = $video_lessons->sections_id;
-            return $data;
+            $data['schools_id'] = $video_lessons->schools_id;
+        $data['classes_id'] = $video_lessons->classes_id;
+        $data['subjects_id'] = $video_lessons->subjects_id;
+        return $data;
         }
     }
 
@@ -422,6 +593,12 @@ class Video_lessons extends Trongate {
         $data['code_snippets'] = $this->input('code_snippets', true);
         $data['published'] = $this->input('published', true);
         $data['sections_id'] = $this->input('sections_id', true);
+        $data['schools_id'] = $this->input('schools_id', true);
+        settype($data['schools_id'], 'int');
+        $data['classes_id'] = $this->input('classes_id', true);
+        settype($data['classes_id'], 'int');
+        $data['subjects_id'] = $this->input('subjects_id', true);
+        settype($data['subjects_id'], 'int');
         return $data;
     }
 
@@ -434,7 +611,40 @@ class Video_lessons extends Trongate {
         return $value;
     }
 
-    function _prep_output($output) {
+        function _sync_with_schools($sync_data) {
+        $sql1 = 'update schools set video_lessons_id = 0 where video_lessons_id = '.$sync_data['update_id'];
+        $this->model->query($sql1);
+
+        $sql2 = 'update schools set video_lessons_id = :update_id where id = :schools_id';
+        $this->model->query_bind($sql2, $sync_data);
+
+        $sql3 = 'update video_lessons set schools_id = 0 where schools_id = :schools_id and id != :update_id';
+        $this->model->query_bind($sql3, $sync_data);
+    }
+
+    function _sync_with_classes($sync_data) {
+        $sql1 = 'update classes set video_lessons_id = 0 where video_lessons_id = '.$sync_data['update_id'];
+        $this->model->query($sql1);
+
+        $sql2 = 'update classes set video_lessons_id = :update_id where id = :classes_id';
+        $this->model->query_bind($sql2, $sync_data);
+
+        $sql3 = 'update video_lessons set classes_id = 0 where classes_id = :classes_id and id != :update_id';
+        $this->model->query_bind($sql3, $sync_data);
+    }
+
+    function _sync_with_subjects($sync_data) {
+        $sql1 = 'update subjects set video_lessons_id = 0 where video_lessons_id = '.$sync_data['update_id'];
+        $this->model->query($sql1);
+
+        $sql2 = 'update subjects set video_lessons_id = :update_id where id = :subjects_id';
+        $this->model->query_bind($sql2, $sync_data);
+
+        $sql3 = 'update video_lessons set subjects_id = 0 where subjects_id = :subjects_id and id != :update_id';
+        $this->model->query_bind($sql3, $sync_data);
+    }
+
+function _prep_output($output) {
         $output['body'] = json_decode($output['body']);
         foreach($output['body'] as $key => $value) {
             $output['body'][$key] ->published = $this->_boolean_to_words($value->published);

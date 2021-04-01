@@ -42,6 +42,20 @@
             <input type="text" name="country" value="<?= $country ?>" class="w3-input w3-border w3-sand" placeholder="Enter Country">
         </p>
         <p>
+            <label class="w3-text-dark-grey"><b>Video Lessons ID</b></label>
+            <?php
+            $attributes['class'] = 'w3-select w3-border w3-sand';
+            echo form_dropdown('video_lessons_id', $video_lessons_options, $video_lessons_id, $attributes);
+            ?>
+        </p>
+        <p>
+            <label class="w3-text-dark-grey"><b>Bookss ID</b></label>
+            <?php
+            $attributes['class'] = 'w3-select w3-border w3-sand';
+            echo form_dropdown('bookss_id', $bookss_options, $bookss_id, $attributes);
+            ?>
+        </p>
+        <p>
             <?php
             $attributes['class'] = 'w3-button w3-white w3-border';
             echo anchor($cancel_url, 'CANCEL', $attributes);

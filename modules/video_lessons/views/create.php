@@ -45,6 +45,27 @@
             echo form_dropdown('sections_id', $sections_options, $sections_id, $attributes);
             ?>
         </p>
+        <p>
+            <label class="w3-text-dark-grey"><b>Schools ID</b></label>
+            <?php
+            $attributes['class'] = 'w3-select w3-border w3-sand';
+            echo form_dropdown('schools_id', $schools_options, $schools_id, $attributes);
+            ?>
+        </p>
+        <p>
+            <label class="w3-text-dark-grey"><b>Classes ID</b></label>
+            <?php
+            $attributes['class'] = 'w3-select w3-border w3-sand';
+            echo form_dropdown('classes_id', $classes_options, $classes_id, $attributes);
+            ?>
+        </p>
+        <p>
+            <label class="w3-text-dark-grey"><b>Subjects ID</b></label>
+            <?php
+            $attributes['class'] = 'w3-select w3-border w3-sand';
+            echo form_dropdown('subjects_id', $subjects_options, $subjects_id, $attributes);
+            ?>
+        </p>
         <p> 
             <?php 
             $attributes['class'] = 'w3-button w3-white w3-border';

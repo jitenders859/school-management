@@ -63,6 +63,44 @@ class Subjects extends Trongate {
         return $options;
     }
 
+    function _get_video_lessons_options($selected_key) {
+
+        if ($selected_key == '') {
+            $options[''] = 'Select...';
+        }
+
+        $sql = '
+                SELECT
+                    subjects.subject_name as assigned_to_description,
+                    video_lessons.id,
+                    video_lessons.title as identifier_column
+                FROM
+                    video_lessons                
+                LEFT JOIN subjects ON video_lessons.id = subjects.video_lessons_id 
+                ORDER BY video_lessons.title
+        ';
+
+        $rows = $this->model->query($sql, 'object');
+
+        foreach ($rows as $row) {
+            $option_id = $row->id;
+            $option_value = trim($row->identifier_column);
+            $assigned_to_description = trim($row->assigned_to_description);
+
+            if ((trim($assigned_to_description) !== '') && ($option_id !== $selected_key)) {
+                $option_value.= ' (currently assigned to '.$assigned_to_description.')';
+            }
+
+            $options[$option_id] = $option_value;
+        }
+
+        if ($selected_key>0) {
+            $options[0] = strtoupper('*** Disassociate from '.$options[$selected_key].' ***');
+        }
+
+        return $options;
+    }
+
     function create() {
         $this->module('security');
         $this->security->_make_sure_allowed();
@@ -86,6 +124,11 @@ class Subjects extends Trongate {
         }
 
         $data['classes_options'] = $this->_get_classes_options($data['classes_id']);
+        if ($data['video_lessons_id'] == 0) {
+            $data['video_lessons_id'] = '';
+        }
+
+        $data['video_lessons_options'] = $this->_get_video_lessons_options($data['video_lessons_id']);
         $data['headline'] = $this->_get_page_headline($update_id);
 
         if ($update_id > 0) {
@@ -149,6 +192,13 @@ class Subjects extends Trongate {
                     $flash_msg = 'The record was successfully created';
                 }
 
+                        $sync_video_lessons_data['update_id'] = $update_id;
+                        $sync_video_lessons_data['video_lessons_id'] = $data['video_lessons_id'];
+                        $this->_sync_with_video_lessons($sync_video_lessons_data);
+
+                
+
+
                 set_flashdata($flash_msg);
                 redirect('subjects/show/'.$update_id);
 
@@ -183,6 +233,12 @@ class Subjects extends Trongate {
                 //delete the record
                 $this->model->delete($update_id, $this->module);
 
+                                //remove any existing association with video_lessons module
+                                $sql = 'update video_lessons set subjects_id = 0 where subjects_id = '.$update_id;
+                                $this->model->query($sql);
+
+                            
+
                 //set the flashdata
                 $flash_msg = 'The record was successfully deleted';
                 set_flashdata($flash_msg);
@@ -206,15 +262,29 @@ class Subjects extends Trongate {
             $data['code'] = $subjects->code;
             $data['date_created'] = $subjects->date_created;
             $data['classes_id'] = $subjects->classes_id;
-            return $data;
+            $data['video_lessons_id'] = $subjects->video_lessons_id;
+        return $data;
         }
     }
 
-    function _get_data_from_post() {
+        function _sync_with_video_lessons($sync_data) {
+        $sql1 = 'update video_lessons set subjects_id = 0 where subjects_id = '.$sync_data['update_id'];
+        $this->model->query($sql1);
+
+        $sql2 = 'update video_lessons set subjects_id = :update_id where id = :video_lessons_id';
+        $this->model->query_bind($sql2, $sync_data);
+
+        $sql3 = 'update subjects set video_lessons_id = 0 where video_lessons_id = :video_lessons_id and id != :update_id';
+        $this->model->query_bind($sql3, $sync_data);
+    }
+
+function _get_data_from_post() {
         $data['subject_name'] = $this->input('subject_name', true);
         $data['subject_intro'] = $this->input('subject_intro', true);
         $data['date_created'] = $this->input('date_created', true);
         $data['classes_id'] = $this->input('classes_id', true);
+        $data['video_lessons_id'] = $this->input('video_lessons_id', true);
+        settype($data['video_lessons_id'], 'int');
         return $data;
     }
 

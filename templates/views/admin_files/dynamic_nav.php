@@ -15,3 +15,5 @@
 <a class="w3-bar-item w3-button w3-hover-black" href="<?= BASE_URL ?>teachers/manage"><i class="fa fa-university"></i> Manage Teachers</a>
 <a class="w3-bar-item w3-button w3-hover-black" href="<?= BASE_URL ?>students/manage"><i class="fa fa-address-card-o"></i> Manage Students</a>
 <a class="w3-bar-item w3-button w3-hover-black" href="<?= BASE_URL ?>transports/manage"><i class="fa fa-bus"></i> Manage Transports</a>
+<a class="w3-bar-item w3-button w3-hover-black" href="<?= BASE_URL ?>subject_types/manage"><i class="fa fa-bank"></i> Manage Subject Types</a>
+<a class="w3-bar-item w3-button w3-hover-black" href="<?= BASE_URL ?>bookss/manage"><i class="fa fa-book"></i> Manage Books</a>

@@ -23,15 +23,19 @@ class Dashboard extends Trongate {
 
 
         function index() {
-
+            $this->school_dashboard();
         }
 
     function school_dashboard() {
         $this->module('security');
+        $this->module('trongate_tokens');
         $token = $this->security->_make_sure_allowed('school');
-        $school_id = $this->trongate_tokens->_attempt_get_school_id($token);
+        $data['school_id'] = $this->trongate_tokens->_attempt_get_school_id($token);
+        $data['view_module'] = "dashboard";
+        $data['view_file'] = "principal-dashboard";
 
 
+        $this->template('principal_admin_panel', $data);
     }
 
     function teacher_dashboard() {

@@ -9,8 +9,8 @@
 
             <div class="w3-container">
             <p>
-                <a href="<?= BASE_URL ?>subjects/manage"><button class="w3-button w3-white w3-border"><i class="fa fa-list-alt"></i> VIEW ALL SUBJECTS</button></a> 
-                <a href="<?= BASE_URL ?>subjects/create/<?= $update_id ?>"><button class="w3-button w3-white w3-border"><i class="fa fa-pencil"></i> UPDATE DETAILS</button></a>
+                <a href="<?= BASE_URL ?>subject_types/manage"><button class="w3-button w3-white w3-border"><i class="fa fa-list-alt"></i> VIEW ALL SUBJECT TYPES</button></a> 
+                <a href="<?= BASE_URL ?>subject_types/create/<?= $update_id ?>"><button class="w3-button w3-white w3-border"><i class="fa fa-pencil"></i> UPDATE DETAILS</button></a>
                 <button onclick="document.getElementById('delete-record-modal').style.display='block'" class="w3-button w3-red w3-hover-black w3-border w3-right"><i class="fa fa-trash-o"></i> DELETE</button>
 
                 <div id="delete-record-modal" class="w3-modal w3-center" style="padding-top: 7em;">
@@ -20,10 +20,10 @@
                         </header>
                         <div class="w3-container">
                             <?php 
-                            echo form_open('subjects/submit_delete/'.$update_id);
+                            echo form_open('subject_types/submit_delete/'.$update_id);
                             ?>
                             <h5>Are you sure?</h5>
-                            <p>You are about to delete a subject record.  This cannot be undone. <br>
+                            <p>You are about to delete a subject type record.  This cannot be undone. <br>
                                         Do you really want to do this?</p>
                             <p class="w3-right modal-btns">
                                 <button onclick="document.getElementById('delete-record-modal').style.display='none'" type="button" name="submit" value="Submit" class="w3-button w3-small 3-white w3-border">CANCEL</button> 
@@ -43,21 +43,14 @@
 <div class="w3-third w3-container">    
         <div class="w3-card-4 edit-block" style="margin-top: 1em;">
             <div class="w3-container primary">
-                <h4>Subject Details</h4>
+                <h4>Subject Type Details</h4>
             </div>
             <div class="edit-block-content">
-              <div class="w3-border-bottom"><b>Subject Name:</b> <span class="w3-right w3-text-grey"><?= $subject_name ?></span></div>
-              <div class="w3-border-bottom"><b>Subject Intro:</b> <span class="w3-text-grey"><br><?= nl2br($subject_intro) ?></span></div>
-              <div class="w3-border-bottom"><b>School Id:</b> <span class="w3-right w3-text-grey"><?= $school_id ?></span></div>
-              <div class="w3-border-bottom"><b>Code:</b> <span class="w3-right w3-text-grey"><?= $code ?></span></div>
-              <div class="w3-border-bottom"><b>Date Created:</b> <span class="w3-right w3-text-grey"><?= $date_created ?></span></div>              
+              <div class="w3-border-bottom"><b>Title:</b> <span class="w3-right w3-text-grey"><?= $title ?></span></div>              
             </div>
         </div>
     </div>
     
-<?= Modules::run('associated_classes_and_subjects/_draw_association_info', $token) ?>
-
-
 <?= Modules::run('associated_subjects_and_subject_types/_draw_association_info', $token) ?>
 
 <div class="w3-third w3-container">    
@@ -129,7 +122,7 @@ function sendToApi(apiUrl, requestType, params) {
 
 function populateAssociationInfo(relationshipModule) {
 
-    var apiUrl = '<?= BASE_URL ?>' + relationshipModule + '/fetch/<?= $update_id ?>/subjects';
+    var apiUrl = '<?= BASE_URL ?>' + relationshipModule + '/fetch/<?= $update_id ?>/subject_types';
     var params = {
         thenRun: 'populateResultsArea'
     }
@@ -206,7 +199,7 @@ function fetchAvailableRecords(results, relationshipModule) {
     var apiUrl = '<?= BASE_URL ?>' + relationshipModule + '/get_dropdown_options';
 
     var params = {
-        callingModuleName: 'subjects',
+        callingModuleName: 'subject_types',
         updateId: <?= $update_id ?>,
         selectedRecords,
         thenRun: 'populateDropdown'
@@ -227,7 +220,7 @@ function submitAssoc(relationshipModule) {
         selectedValue,
         requestCode: "SAS",
         relationshipModule,
-        callingModule: 'subjects',
+        callingModule: 'subject_types',
         thenRun: 'repopulate'
     }
 
@@ -270,9 +263,7 @@ function closeModal(elementId) {
 
 window.onload = function() {
     //attempt to populate relationship panels on the page
-    populateAssociationInfo('associated_classes_and_subjects');
     populateAssociationInfo('associated_subjects_and_subject_types');
-
 
 }
 </script>

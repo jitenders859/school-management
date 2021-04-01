@@ -7,22 +7,22 @@
                 <div id="update-form-fields">
                 <label>Username</label>
                 <input id="update-username" name="username" class="u-full-width" type="text" placeholder="Enter username here">
-               
+
                 <label>Password</label>
                 <input id="update-password" name="password" class="u-full-width" type="password" placeholder="Enter new password here">
 
                 <label>Repeat Password</label>
                 <input id="update-repeat-password" name="repeat_password" class="u-full-width" type="password" placeholder="Repeat new password here">
-                
 
-                <input class="button-primary" type="button" name="submit" value="Update Record" onClick="updateRecord()"> 
+
+                <input class="button-primary" type="button" name="submit" value="Update Record" onClick="updateRecord()">
                 <input class="button button-cancel" value="Cancel" onclick="hideModal()">
                 <input class="button button-danger u-pull-right" value="Delete" onclick="confDelete()">
                 </div>
 
                 <div id="conf-delete-btns" style="display: none;">
                     <input class="button button-danger" value="Yes - Delete Now" onclick="submitDelete()">
-                    <input class="button button-cancel u-pull-right" value="Cancel" onclick="cancelDelete()">    
+                    <input class="button button-cancel u-pull-right" value="Cancel" onclick="cancelDelete()">
                 </div>
             </form>
         </div>
@@ -40,6 +40,9 @@
             <button class="button-primary" onclick="showCreateForm()" id="create-new-btn">
                 Create New Record
             </button>
+           <a href="<?= BASE_URL ?>members/manage"><button class="button-primary" onclick="showCreateForm()" id="create-new-btn">
+                Go To Dashboard
+            </button></a>
         </p>
 
         <div class="row" id="new-record-details" style="display: none; margin-top: 3em; margin-bottom: 5em;">
@@ -51,14 +54,14 @@
                 <form>
                     <label>Username</label>
                     <input id="create-username" name="username" class="u-full-width" type="text" placeholder="Enter username here">
-                   
+
                     <label>Password</label>
                     <input id="create-password" name="password" class="u-full-width" type="password" placeholder="Enter password here">
 
                     <label>Repeat Password</label>
                     <input id="create-repeat-password" name="repeat_password" class="u-full-width" type="password" placeholder="Repeat password here">
 
-                    <input class="button-primary" type="button" name="submit" value="Create New Record" onclick="createRecord()"> 
+                    <input class="button-primary" type="button" name="submit" value="Create New Record" onclick="createRecord()">
                     <input class="button button-cancel u-pull-right" value="Cancel" onclick="hideCreateForm()">
                 </form>
             </div>
